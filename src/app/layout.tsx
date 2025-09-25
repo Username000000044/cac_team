@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,8 +37,51 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
+  );
+}
+
+function Navbar() {
+  return (
+    <nav className="flex justify-between items-center m-10 text-center">
+      {/* Left Container */}
+      <div className="flex">
+        {/* md+ viewport | logo*/}
+        <div className="h-8 w-8 bg-foreground me-5 rounded-sm"></div>
+        {/* Nav Items */}
+        <ol className="items-center hidden md:flex">
+          <li className="mx-4">
+            <Link href="/#">Phishing</Link>
+          </li>
+          <li className="mx-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Link href="/#">Games</Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="mt-2">
+                <DropdownMenuItem>
+                  <Link href="/game1">URL Validation</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/game2">Email Validation</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </li>
+          <li className="mx-4">
+            <Link href="/#">About Us</Link>
+          </li>
+        </ol>
+        {/* small viewport | hamburger*/}
+        <div className="h-8 w-8 bg-primary me-10 rounded-sm md:hidden"></div>
+      </div>
+      {/* Right Container */}
+      <div className="h-8 w-20 bg-foreground rounded-sm text-background text-sm/8">
+        Sign Up
+      </div>
+    </nav>
   );
 }
