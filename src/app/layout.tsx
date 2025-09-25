@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import Link from "next/link";
+
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +14,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CustomTrigger } from "@/components/sidebar-trigger";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +42,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+       <SidebarProvider defaultOpen={false}>
+        <AppSidebar />
+        <main className="w-full">
+          <Navbar/>
+          {children}
+        </main>
+        </SidebarProvider> 
       </body>
     </html>
   );
@@ -76,10 +86,12 @@ function Navbar() {
           </li>
         </ol>
         {/* small viewport | hamburger*/}
-        <div className="h-8 w-8 bg-primary me-10 rounded-sm md:hidden"></div>
+        <div className="flex items-center me-10 md:hidden">
+          <CustomTrigger />
+        </div>
       </div>
       {/* Right Container */}
-      <div className="h-8 w-20 bg-foreground rounded-sm text-background text-sm/8">
+      <div className="h-8 w-20 bg-primary rounded-sm text-background text-sm/8">
         Sign Up
       </div>
     </nav>
