@@ -2,20 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Link from "next/link";
-
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { CustomTrigger } from "@/components/sidebar-trigger";
-
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Navbar } from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,58 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <SidebarProvider defaultOpen={false}>
-        <AppSidebar />
-        <main className="w-full">
-          <Navbar/>
-          {children}
-        </main>
-        </SidebarProvider> 
+        <SidebarProvider defaultOpen={false}>
+          <AppSidebar />
+          <main className="w-full">
+            <Navbar />
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
-  );
-}
-
-function Navbar() {
-  return (
-    <nav className="flex justify-between items-center m-10 text-center">
-      {/* Left Container */}
-      <div className="flex">
-        {/* md+ viewport | logo*/}
-        <div className="h-8 w-8 bg-foreground me-5 rounded-sm"></div>
-        {/* Nav Items */}
-        <ol className="items-center hidden md:flex">
-          <li className="mx-4">
-            <Link href="/#">Phishing</Link>
-          </li>
-          <li className="mx-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Link href="/#">Games</Link>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="mt-2">
-                <DropdownMenuItem>
-                  <Link href="/game1">URL Validation</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/game2">Email Validation</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </li>
-          <li className="mx-4">
-            <Link href="/#">About Us</Link>
-          </li>
-        </ol>
-        {/* small viewport | hamburger*/}
-        <div className="flex items-center me-10 md:hidden">
-          <CustomTrigger />
-        </div>
-      </div>
-      {/* Right Container */}
-      <div className="h-8 w-20 bg-primary rounded-sm text-background text-sm/8">
-        Sign Up
-      </div>
-    </nav>
   );
 }
