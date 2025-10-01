@@ -140,7 +140,7 @@ const chartData = [
 const chartConfig = {
   attacks: {
     label: "Total Attacks",
-    color: "var(--chart-1)",
+    color: "var(--secondary)",
   },
 } satisfies ChartConfig;
 
@@ -157,10 +157,7 @@ export default function PhishingDataChart() {
   return (
     <Card className="py-4 sm:py-0">
       <CardContent className="px-2 sm:p-6">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
-        >
+        <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -206,24 +203,24 @@ export default function PhishingDataChart() {
             />
           </LineChart>
         </ChartContainer>
+        <CardHeader className="flex flex-col items-stretch !p-0 mt-5 sm:flex-row ">
+          <div className="flex flex-1 flex-col justify-center gap-1 px-6 pb-3 sm:pb-0">
+            <CardTitle>Phishing Attacks Data</CardTitle>
+            <CardDescription>
+              Showing approximate amount of phishing attacks from the past 10
+              years.
+            </CardDescription>
+          </div>
+          <div className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left sm:border-t-0 sm:px-8 sm:py-6 md:border-l">
+            <span className="text-muted-foreground text-xs">
+              {chartConfig.attacks.label}
+            </span>
+            <span className="text-lg leading-none font-bold sm:text-3xl">
+              {total.toLocaleString()}
+            </span>
+          </div>
+        </CardHeader>
       </CardContent>
-      <CardHeader className="flex flex-col items-stretch !p-0 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 pb-3 sm:pb-0">
-          <CardTitle>Phishing Attacks Data</CardTitle>
-          <CardDescription>
-            Showing approximate amount of phishing attacks from the past 10
-            years.
-          </CardDescription>
-        </div>
-        <div className="flex flex-1 flex-col justify-center gap-1 border-t border-l px-6 py-4 text-left sm:border-t-0 sm:px-8 sm:py-6">
-          <span className="text-muted-foreground text-xs">
-            {chartConfig.attacks.label}
-          </span>
-          <span className="text-lg leading-none font-bold sm:text-3xl">
-            {total.toLocaleString()}
-          </span>
-        </div>
-      </CardHeader>
     </Card>
   );
 }

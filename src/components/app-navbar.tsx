@@ -13,6 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button, buttonVariants } from "./ui/button";
+import { LogIn } from "lucide-react";
 
 const games: { title: string; href: string; description: string }[] = [
   {
@@ -61,7 +62,10 @@ export const Navbar = () => {
       </NavigationMenu>
 
       <Button asChild className={buttonVariants({ size: "lg" })}>
-        <Link href="/login">Login</Link>
+        <Link href="/login">
+          <LogIn />
+          <span className="hidden md:block">Login</span>
+        </Link>
       </Button>
     </div>
   );
