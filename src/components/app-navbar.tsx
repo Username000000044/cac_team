@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
 
@@ -30,7 +28,7 @@ const games: { title: string; href: string; description: string }[] = [
 
 export const Navbar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap mb-8">
+    <div className="flex items-center justify-between flex-wrap">
       <NavigationMenu>
         <div className="w-10 h-10 bg-primary me-1.5"></div>
         <NavigationMenuList>

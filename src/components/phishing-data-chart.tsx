@@ -198,7 +198,7 @@ export default function PhishingDataChart() {
               dataKey="attacks"
               type="monotone"
               stroke={chartConfig.attacks.color}
-              strokeWidth={2}
+              strokeWidth={1}
               dot={false}
             />
           </LineChart>
