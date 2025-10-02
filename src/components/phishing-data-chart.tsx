@@ -149,9 +149,9 @@ export default function PhishingDataChart() {
     () =>
       chartData.reduce(
         (accumulator, current) => accumulator + current.attacks,
-        0
+        0,
       ),
-    []
+    [],
   );
 
   return (

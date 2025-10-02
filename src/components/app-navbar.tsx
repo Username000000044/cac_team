@@ -30,7 +30,9 @@ export const Navbar = () => {
   return (
     <div className="flex items-center justify-between flex-wrap">
       <NavigationMenu>
-        <div className="w-10 h-10 bg-primary me-1.5"></div>
+        <Button className="w-10 h-10 bg-primary me-1.5" asChild>
+          <Link href={"/"}></Link>
+        </Button>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Games</NavigationMenuTrigger>
