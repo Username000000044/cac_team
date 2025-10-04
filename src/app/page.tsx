@@ -1,6 +1,6 @@
 "use client";
 
-import PhishingDataChart from "@/components/phishing-data-chart";
+import PhishingDataChart from "@/components/chart-phishing";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import Link from "next/link";
@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-[1rem]">
       <section className="mx-auto max-w-[75rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[2fr_1fr] md:grid-rows-1 leading-tight">
-        <div className="flex flex-col justify-center items-center text-center p-4 md:text-left md:items-start md:p-0">
+        <div className="relative z-2 flex flex-col justify-center items-center text-center p-4 md:text-left md:items-start md:p-0">
           <h1 className="font-bold text-[2rem] md:text-[3rem] lg:text-[4rem] xl:text-[9rem]">
             App
             <span className="text-primary"> Name</span>
@@ -41,10 +41,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section>
-        <div className="flex flex-col items-center w-full">
-          {/* <h2 className="text-[7rem] text-card font-light -mb-5">Phishing Attacks</h2> */}
-        </div>
+      <section className="relative -mt-45 z-1">
         <PhishingDataChart />
       </section>
     </div>

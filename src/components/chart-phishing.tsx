@@ -149,13 +149,13 @@ export default function PhishingDataChart() {
     () =>
       chartData.reduce(
         (accumulator, current) => accumulator + current.attacks,
-        0,
+        0
       ),
-    [],
+    []
   );
 
   return (
-    <Card className="py-4 sm:py-0">
+    <Card className="py-4 sm:py-0 !bg-transparent">
       <CardContent className="px-2 sm:p-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
           <LineChart
@@ -166,7 +166,7 @@ export default function PhishingDataChart() {
               right: 12,
             }}
           >
-            <CartesianGrid vertical={false} />
+            {/* <CartesianGrid vertical={false} /> */}
             <XAxis
               dataKey="date"
               tickLine={false}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
 import { Navbar } from "@/components/app-navbar";
@@ -28,13 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark min-h-screen flex flex-col`}
       >
-        <div className="m-8">
+        {/* Navbar */}
+        <div className="p-8">
           <Navbar />
         </div>
-        <main className="mx-8">{children}</main>
-        <div className="m-8">
+
+        {/* Page Content */}
+        <main className="flex-1 flex flex-col px-8 pb-8">{children}</main>
+
+        {/* Footer */}
+        <div className="px-8 pb-8">
           <Footer />
         </div>
       </body>

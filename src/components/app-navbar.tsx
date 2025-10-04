@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
   NavigationMenu,
@@ -27,6 +30,16 @@ const games: { title: string; href: string; description: string }[] = [
 ];
 
 export const Navbar = () => {
+  const pathname = usePathname();
+
+  return (
+    <>
+      {pathname.includes("/dashboard") ? <DashboardNavbar /> : <MainNavbar />}
+    </>
+  );
+};
+
+const MainNavbar = () => {
   return (
     <div className="flex items-center justify-between flex-wrap">
       <NavigationMenu>
@@ -70,7 +83,43 @@ export const Navbar = () => {
     </div>
   );
 };
-
+const DashboardNavbar = () => {
+  return (
+    <div className="flex items-center justify-between flex-wrap">
+      <NavigationMenu>
+        <Button className="w-10 h-10 bg-primary me-1.5" asChild>
+          <Link href={"/"}></Link>
+        </Button>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Games</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {games.map((game) => (
+                  <ListItem
+                    key={game.title}
+                    title={game.title}
+                    href={game.href}
+                  >
+                    {game.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              asChild
+            >
+              <Link href="/about">About Us</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
+  );
+};
 function ListItem({
   title,
   children,
