@@ -26,6 +26,8 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         hero: "h-12 text-2xl rounded-md px-6 has-[>svg]:px-4",
         game: "h-full text-2xl md:text-3xl grow rounded-md px-6 has-[>svg]:px-4",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
       },
     },
     defaultVariants: {

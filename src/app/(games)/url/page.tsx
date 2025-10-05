@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +11,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Home } from "lucide-react";
+import Link from "next/link";
 
 interface URLs {
   protocol: string;
@@ -197,18 +210,18 @@ const urls: URLs[] = [
 ];
 
 export default function URLPage() {
-  const numberOfQuestions = 8;
+  const numberOfQuestions = 10;
 
   const [randomIndexArray, setRandomIndexArray] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState<URLs | null>(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [response, setResponse] = useState<boolean[]>([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   useEffect(() => {
-    // on page load empty newArray is created
-    // newArray is filled with random index's from url array
-    // setRandomIndexArray is the newArray
-    // first question is first in newArray
+    // Generate 8 unique and random index's on mount
 
     const newArray: number[] = [];
     while (newArray.length < numberOfQuestions) {
@@ -222,8 +235,37 @@ export default function URLPage() {
     setCurrentQuestion(urls[newArray[0]]);
   }, []);
 
+  useEffect(() => {
+    // When the last question is answered
+    if (response.length == numberOfQuestions) {
+      setIsButtonDisabled(true);
+      setIsDialogOpen(true);
+    } else {
+      setIsButtonDisabled(false);
+      setIsDialogOpen(false);
+    }
+    console.log(response);
+  }, [response]);
+
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    questionResponse(event);
+    nextQuestion();
+  };
+
+  const questionResponse = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // safe = not a scam
+    // Scam = scam
+    const isScam = event.currentTarget.dataset.isscam === "true";
+    setResponse((previousArray) => [...previousArray, isScam]);
+
+    const givenAnswer = isScam;
+    const correctAnswer = currentQuestion?.isScam;
+
+    if (givenAnswer === correctAnswer)
+      setCorrectAnswers((previousNumber) => previousNumber + 1);
+  };
+
   const nextQuestion = () => {
-    // if the current question isnt the last one
     if (currentQuestionIndex < numberOfQuestions - 1) {
       setCurrentQuestionIndex((prev) => {
         const newIndex = prev + 1;
@@ -231,104 +273,133 @@ export default function URLPage() {
         return newIndex;
       });
     }
-
-    console.log(response);
   };
 
   return (
-    <div className="flex-1 w-full mx-auto gap-5 max-w-[90rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1">
-      <div className="flex flex-col gap-5">
-        <Card className="h-[85%]">
-          <CardHeader>
-            <CardTitle>URL Verifier</CardTitle>
-            <CardDescription>
-              Is the URL (Uniform Resource Locator) safe?
-            </CardDescription>
-            <CardAction>
-              {currentQuestionIndex + 1}/{numberOfQuestions}
-            </CardAction>
-          </CardHeader>
-          <CardContent className="flex flex-col justify-center items-center h-full text-center">
-            {currentQuestion && (
-              <h2 className="text-md md:text-3xl xl:text-5xl font-thin">
-                <span className="text-[#d29bff] font-normal">
-                  {currentQuestion.protocol}
-                </span>
-                ://
-                <span className="text-[#9b6ecf] font-normal">
-                  {currentQuestion.subdomain}
-                </span>
-                .
-                <span className="text-[#7a4fcf] font-normal">
-                  {currentQuestion.sld}
-                </span>
-                .
-                <span className="text-[#9b6ecf] font-normal">
-                  {currentQuestion.tld}
-                </span>
-                <span className="text-[#d29bff] font-normal">
-                  {currentQuestion.path}
-                </span>
-              </h2>
-            )}
-          </CardContent>
-          <CardFooter className="flex-col text-center text-muted-foreground">
-            {currentQuestion && (
-              <div className="hidden md:flex items-start gap-5">
-                <div className="flex flex-col">
-                  <p>Protocol (Scheme):</p>
-                  <p>
-                    {currentQuestion.protocol == "http"
-                      ? "http (80)"
-                      : "https (443)"}
-                  </p>
+    <>
+      <div className="flex-1 w-full mx-auto gap-5 max-w-[90rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1">
+        <div className="flex flex-col gap-5">
+          <Card className="h-[85%]">
+            <CardHeader>
+              <CardTitle>URL Verifier</CardTitle>
+              <CardDescription>
+                Is the URL (Uniform Resource Locator) safe?
+              </CardDescription>
+              <CardAction>
+                {currentQuestionIndex + 1}/{numberOfQuestions}
+              </CardAction>
+            </CardHeader>
+            <CardContent className="flex flex-col justify-center items-center h-full text-center">
+              {currentQuestion && (
+                <h2 className="text-md md:text-3xl xl:text-5xl font-thin">
+                  <span className="text-[#d29bff] font-normal">
+                    {currentQuestion.protocol}
+                  </span>
+                  ://
+                  <span className="text-[#9b6ecf] font-normal">
+                    {currentQuestion.subdomain}
+                  </span>
+                  .
+                  <span className="text-[#7a4fcf] font-normal">
+                    {currentQuestion.sld}
+                  </span>
+                  .
+                  <span className="text-[#9b6ecf] font-normal">
+                    {currentQuestion.tld}
+                  </span>
+                  <span className="text-[#d29bff] font-normal">
+                    {currentQuestion.path}
+                  </span>
+                </h2>
+              )}
+            </CardContent>
+            <CardFooter className="flex-col text-center text-muted-foreground">
+              {currentQuestion && (
+                <div className="hidden md:flex items-start gap-5">
+                  <div className="flex flex-col">
+                    <p>Protocol (Scheme):</p>
+                    <p>
+                      {currentQuestion.protocol == "http"
+                        ? "http (80)"
+                        : "https (443)"}
+                    </p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>Subdomain:</p>
+                    <p>{currentQuestion.subdomain}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>Second-level Domain (SLD):</p>
+                    <p>{currentQuestion.subdomain}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>Top-level Domain (TLD):</p>
+                    <p>{currentQuestion.tld}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>Port:</p>
+                    <p>{currentQuestion.port}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>Path:</p>
+                    <p>{currentQuestion.path}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <p>Subdomain:</p>
-                  <p>{currentQuestion.subdomain}</p>
-                </div>
-                <div className="flex flex-col">
-                  <p>Second-level Domain (SLD):</p>
-                  <p>{currentQuestion.subdomain}</p>
-                </div>
-                <div className="flex flex-col">
-                  <p>Top-level Domain (TLD):</p>
-                  <p>{currentQuestion.tld}</p>
-                </div>
-                <div className="flex flex-col">
-                  <p>Port:</p>
-                  <p>{currentQuestion.port}</p>
-                </div>
-                <div className="flex flex-col">
-                  <p>Path:</p>
-                  <p>{currentQuestion.path}</p>
-                </div>
-              </div>
-            )}
-          </CardFooter>
-        </Card>
-        <div className="h-[15%]">
-          <div className="flex h-full">
-            <Button
-              data-is_scam="true"
-              onClick={nextQuestion}
-              className={buttonVariants({ size: "game", variant: "outline" })}
-            >
-              Safe
-            </Button>
-            <Button
-              data-is_scam="false"
-              onClick={nextQuestion}
-              className={buttonVariants({ size: "game", variant: "outline" })}
-            >
-              Unsafe
-            </Button>
+              )}
+            </CardFooter>
+          </Card>
+          <div className="h-[15%]">
+            <div className="flex h-full">
+              <Button
+                onClick={onClick}
+                className={buttonVariants({ size: "game", variant: "outline" })}
+                disabled={isButtonDisabled}
+                data-isscam="false"
+              >
+                Safe
+              </Button>
+              <Button
+                onClick={onClick}
+                className={buttonVariants({ size: "game", variant: "outline" })}
+                disabled={isButtonDisabled}
+                data-isscam="true"
+              >
+                Scam
+              </Button>
+            </div>
           </div>
+        </div>
+        <div className="h-[100%] bg-card p-5 text-center">
+          <h2 className="text-2xl">Leadboard</h2>
         </div>
       </div>
 
-      <div className="h-[100%] bg-card"></div>
-    </div>
+      <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-2xl sm:text-4xl">
+              Congratulations! 🎉
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-lg">
+              You have acheived a {correctAnswers}/{numberOfQuestions} score!
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              className={buttonVariants({ variant: "outline" })}
+              asChild
+            >
+              <Link href="/">
+                <Home />
+              </Link>
+            </AlertDialogAction>
+            <AlertDialogAction onClick={() => window.location.reload()}>
+              Play Again
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
 
