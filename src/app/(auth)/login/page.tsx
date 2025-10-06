@@ -32,7 +32,7 @@ export default function LogInPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="congress@example.com"
                 required
               />
             </div>
