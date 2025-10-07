@@ -47,7 +47,7 @@ export default function HomePage() {
         </div>
         <div className="relative -mt-15 md:m-0 z-1">
           <Image
-            className="rotate-10 mx-auto scale-70 shadow-[11px_11px_5px_0px_var(--chart-1)] md:scale-90"
+            className="rotate-10 mx-auto scale-70 shadow-[11px_11px_0px_0px_var(--card)] md:scale-90"
             src="/hero.jpg"
             width={300}
             height={400}
