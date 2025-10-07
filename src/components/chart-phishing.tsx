@@ -140,7 +140,7 @@ const chartData = [
 const chartConfig = {
   attacks: {
     label: "Total Attacks",
-    color: "var(--secondary)",
+    color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
 
@@ -155,7 +155,7 @@ export default function PhishingDataChart() {
   );
 
   return (
-    <Card className="py-4 sm:py-0 !bg-transparent">
+    <Card className="py-4 sm:py-0 !bg-linear-to-t from-card to-background to-70%">
       <CardContent className="px-2 sm:p-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
           <LineChart
