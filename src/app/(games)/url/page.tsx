@@ -373,11 +373,41 @@ export default function URLPage() {
         <div className="h-[100%] p-2 text-center">
           <h2 className="text-3xl mb-4">Leadboard</h2>
           <div className="flex flex-col">
-            <LeaderboardItem rank="1" name="John" score="10/10" date={new Date("2013-05-18T10:25:31Z")}/>
-            <LeaderboardItem rank="2" name="Tyrone" score="10/10" date={new Date("1988-11-09T08:44:02Z")}/>
-            <LeaderboardItem rank="3" name="Jayvn" score="10/10" date={new Date("2021-02-28T22:12:19Z")}/>
-            <LeaderboardItem rank="4" name="Muhammad" score="10/10" date={new Date("1995-07-22T15:59:55Z")}/>
-            <LeaderboardItem rank="5" name="Bob" score="10/10" date={new Date("2006-09-01T19:30:08Z")}/>
+            <LeaderboardItem
+              rank="1"
+              name="John"
+              score="10/10"
+              date={new Date("2013-05-18T10:25:31Z")}
+              img="https://avatar.iran.liara.run/public/boy"
+            />
+            <LeaderboardItem
+              rank="2"
+              name="Tyrone"
+              score="10/10"
+              date={new Date("1988-11-09T08:44:02Z")}
+              img="https://avatar.iran.liara.run/public/girl"
+            />
+            <LeaderboardItem
+              rank="3"
+              name="Jayvn"
+              score="10/10"
+              date={new Date("2021-02-28T22:12:19Z")}
+              img="https://avatar.iran.liara.run/public/boy"
+            />
+            <LeaderboardItem
+              rank="4"
+              name="Muhammad"
+              score="10/10"
+              date={new Date("1995-07-22T15:59:55Z")}
+              img="https://avatar.iran.liara.run/public/girl"
+            />
+            <LeaderboardItem
+              rank="5"
+              name="Bob"
+              score="9/10"
+              date={new Date("2006-09-01T19:30:08Z")}
+              img="https://avatar.iran.liara.run/public/boy"
+            />
           </div>
         </div>
       </div>
