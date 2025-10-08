@@ -17,7 +17,7 @@ export const LeaderboardItem = ({ name, score, date, img }: RankType) => {
           height={54}
           src={img + `?username=[${name}]`}
           alt="profile image"
-          className="flex self-center items-center justify-center rounded-full bg-secondary text-secondary-foreground text-2xl me-4"
+          className="flex self-center items-center justify-center rounded-full bg-background text-secondary-foreground text-2xl me-4"
         ></Image>
 
         <div className="flex flex-col items-start justify-center">
