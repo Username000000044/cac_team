@@ -8,7 +8,7 @@ interface RankType {
   img: string;
 }
 
-export const LeaderboardItem = ({ rank, name, score, date, img }: RankType) => {
+export const LeaderboardItem = ({ name, score, date, img }: RankType) => {
   return (
     <div className="bg-card h-20 min-w-50 grow mb-5 rounded-lg p-3">
       <div className="flex h-full">
