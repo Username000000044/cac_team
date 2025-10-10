@@ -1,6 +1,6 @@
 "use client";
 
-import PhishingDataChart from "@/components/chart-phishing";
+import PhishingDataChart from "@/components/charts/chart-landing";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import Link from "next/link";

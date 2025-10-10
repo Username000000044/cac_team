@@ -14,7 +14,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
@@ -144,7 +144,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function PhishingDataChart() {
+export default function LandingChart() {
   const total = React.useMemo(
     () =>
       chartData.reduce(
