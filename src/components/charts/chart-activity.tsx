@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
@@ -10,7 +10,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -18,9 +18,14 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-
+} from "@/components/ui/chart";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const chartData = [
   // July 2025
@@ -70,78 +75,75 @@ const chartData = [
   { date: "2025-10-30", clicks: 360, opens: 460, sends: 750 },
 ];
 const chartConfig = {
-    attacks: {
-        label: "Phishing Attacks"
-    },
-    clicks: {
-        label: "Clicks",
-        color: "var(--chart-1)"
-    },
-    opens: {
-        label: "Opens",
-        color: "var(--chart-2)"
-    },
-    sends: {
-        label: "Sends",
-        color: "var(--chart-3)"
-    }
-}
+  attacks: {
+    label: "Phishing Attacks",
+  },
+  clicks: {
+    label: "Clicks",
+    color: "var(--chart-1)",
+  },
+  opens: {
+    label: "Opens",
+    color: "var(--chart-2)",
+  },
+  sends: {
+    label: "Sends",
+    color: "var(--chart-3)",
+  },
+};
 
 interface ActivityChartProps {
   className?: string;
 }
 
 export default function ActivityChart({ className }: ActivityChartProps) {
-    const [timeRange, setTimeRange] = useState("90d");
+  const [timeRange, setTimeRange] = useState("90d");
 
-    const filteredData = chartData.filter((item) => {
-        const date = new Date(item.date);
-        let daysToSubtract = 90;
+  const filteredData = chartData.filter((item) => {
+    const date = new Date(item.date);
+    let daysToSubtract = 90;
 
-        if(timeRange === "30d") {
-            daysToSubtract = 30;
-        } else if(timeRange === "7d") {
-            daysToSubtract = 7;
-        }
-        const startDate = new Date()
-        startDate.setDate(startDate.getDate() - daysToSubtract);
-        return date >= startDate;
-    })
+    if (timeRange === "30d") {
+      daysToSubtract = 30;
+    } else if (timeRange === "7d") {
+      daysToSubtract = 7;
+    }
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - daysToSubtract);
+    return date >= startDate;
+  });
 
-    return (
-        <Card className={`pt-0 bg-background ${className}`}>
-            <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-                <div className="grid flex-1 gap-1">
-                    <CardTitle>Phishing Attacks</CardTitle>
-                    <CardDescription>
-                        Showing total phishing attacks in a cetain time frame.
-                    </CardDescription>
-                </div>
-                <Select value={timeRange} onValueChange={setTimeRange}>
-                <SelectTrigger
-                    className="hidden w-[160px] rounded-lg sm:ml-auto sm:flex"
-                    aria-label="Select a value"
-                >
-                    <SelectValue placeholder="Last 3 months" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl">
-                    <SelectItem value="90d" className="rounded-lg">
-                    Last 3 months
-                    </SelectItem>
-                    <SelectItem value="30d" className="rounded-lg">
-                    Last 30 days
-                    </SelectItem>
-                    <SelectItem value="7d" className="rounded-lg">
-                    Last 7 days
-                    </SelectItem>
-                </SelectContent>
-                </Select>
-            </CardHeader>
-            <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-auto h-[200px] w-full"
-        >
+  return (
+    <Card className={`p-0 bg-transparent ${className}`}>
+      <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+        <div className="grid flex-1 gap-1">
+          <CardTitle>Phishing Attacks</CardTitle>
+          <CardDescription>
+            Showing total phishing attacks in a cetain time frame.
+          </CardDescription>
+        </div>
+        <Select value={timeRange} onValueChange={setTimeRange}>
+          <SelectTrigger
+            className="hidden w-[160px] rounded-lg sm:ml-auto sm:flex"
+            aria-label="Select a value"
+          >
+            <SelectValue placeholder="Last 3 months" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            <SelectItem value="90d" className="rounded-lg">
+              Last 3 months
+            </SelectItem>
+            <SelectItem value="30d" className="rounded-lg">
+              Last 30 days
+            </SelectItem>
+            <SelectItem value="7d" className="rounded-lg">
+              Last 7 days
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </CardHeader>
+      <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+        <ChartContainer config={chartConfig} className="aspect-auto h-[200px]">
           <AreaChart data={filteredData}>
             <defs>
               <linearGradient id="fillClicks" x1="0" y1="0" x2="0" y2="1">
@@ -189,11 +191,11 @@ export default function ActivityChart({ className }: ActivityChartProps) {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => {
-                const date = new Date(value)
+                const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
-                })
+                });
               }}
             />
             <ChartTooltip
@@ -204,7 +206,7 @@ export default function ActivityChart({ className }: ActivityChartProps) {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
-                    })
+                    });
                   }}
                   indicator="dot"
                 />
@@ -235,6 +237,6 @@ export default function ActivityChart({ className }: ActivityChartProps) {
           </AreaChart>
         </ChartContainer>
       </CardContent>
-        </Card>
-    )
+    </Card>
+  );
 }

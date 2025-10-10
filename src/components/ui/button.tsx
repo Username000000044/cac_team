@@ -19,11 +19,16 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        phishing:
+          "bg-chart-2 text-chart-6 border border-chart-1 hover:bg-chart-3 hover:text-chart-1 hover:border-chart-2 transition ease-in-out duration-300",
+        sidebar_active:
+          "bg-primary text-primary-foreground hover:text-primary-foreground hover:bg-primary/80 transition duration-300 ease-in-out",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        xl: "h-13 text-2xl lg:text-3xl rounded-md px-6 has-[>svg]:px-4",
         hero: "h-10 md:h-12 text-2xl rounded-md px-6 has-[>svg]:px-4",
         game: "h-full text-2xl md:text-3xl grow rounded-md px-6 has-[>svg]:px-4",
         "icon-sm": "size-8",

@@ -38,7 +38,7 @@ export default function RootLayout({
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 flex flex-col pb-8">{children}</main>
+          <main className="flex flex-col pb-8">{children}</main>
         </SidebarProvider>
         {/* Footer */}
         <div className="px-8 pb-8">
