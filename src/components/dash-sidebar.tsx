@@ -25,8 +25,8 @@ const items = [
     icon: Home,
   },
   {
-    title: "Calendar",
-    url: "/dashboard/calendar",
+    title: "Phishing",
+    url: "/dashboard/phishing",
     icon: Calendar,
   },
 ];
