@@ -1,3 +1,3 @@
-export default function CalandarPage() {
-  return <div className="flex flex-1 h-full">Calendar</div>;
+export default function PhishingPage() {
+  return <div className="flex flex-1 h-full"></div>;
 }
