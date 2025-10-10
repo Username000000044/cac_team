@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-[1rem]">
+    <div className="flex flex-col gap-[1rem] px-8">
       <section className="mx-auto max-w-[75rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[2fr_1fr] md:grid-rows-1 leading-tight">
         <div className="relative z-2 flex flex-col justify-center items-center text-center p-4 md:text-left md:items-start md:p-0">
           <h1 className="text-[2rem] md:text-[5.5rem] text-foreground font-bold md:leading-[5rem]">

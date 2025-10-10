@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button, buttonVariants } from "./ui/button";
 import { LogIn } from "lucide-react";
+import { SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 
 const games: { title: string; href: string; description: string }[] = [
   {
@@ -33,15 +34,13 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <>
-      {pathname.includes("/dashboard") ? <DashboardNavbar /> : <MainNavbar />}
-    </>
+    <>{pathname.includes("/dashboard") ? <DashNavbar /> : <MainNavbar />}</>
   );
 };
 
 const MainNavbar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap">
+    <div className="flex items-center justify-between flex-wrap ">
       <NavigationMenu>
         <Button className="w-10 h-10 bg-primary me-1.5" asChild>
           <Link href={"/"}></Link>
@@ -75,7 +74,8 @@ const MainNavbar = () => {
     </div>
   );
 };
-const DashboardNavbar = () => {
+
+const DashNavbar = () => {
   return (
     <div className="flex items-center justify-between flex-wrap">
       <NavigationMenu>
@@ -99,19 +99,14 @@ const DashboardNavbar = () => {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              className={navigationMenuTriggerStyle()}
-              asChild
-            >
-              <Link href="/about">About Us</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+
+      <SidebarTrigger className="flex md:hidden" />
     </div>
   );
 };
+
 function ListItem({
   title,
   children,
