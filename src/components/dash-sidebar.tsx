@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Bug, Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 
 // Menu items.
 const items = [
@@ -27,7 +27,7 @@ const items = [
   {
     title: "Phishing",
     url: "/dashboard/phishing",
-    icon: Calendar,
+    icon: Bug,
   },
 ];
 
