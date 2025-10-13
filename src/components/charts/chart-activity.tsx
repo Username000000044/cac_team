@@ -115,8 +115,8 @@ export default function ActivityChart({ className }: ActivityChartProps) {
 
   return (
     <Card className={`p-0 bg-transparent ${className}`}>
-      <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-        <div className="grid flex-1 gap-1">
+      <CardHeader className="flex items-center space-y-0 border-b py-5 sm:flex-row">
+        <div className="grid flex-1 gap-y-0">
           <CardTitle>Phishing Attacks</CardTitle>
           <CardDescription>
             Showing total phishing attacks in a cetain time frame.
