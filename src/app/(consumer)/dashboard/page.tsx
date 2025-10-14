@@ -33,7 +33,6 @@ export default function DashboardPage() {
 
         {/* Charts */}
         <PopulationBarChart className="col-span-1 bg-background order-4 md:order-4" />
-        {/* <ResponseBarChart className="col-span-full bg-background order-2 md:order-5" /> */}
       </div>
     </div>
   );
