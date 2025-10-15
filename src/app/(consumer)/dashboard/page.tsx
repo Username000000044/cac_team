@@ -16,7 +16,7 @@ export default function DashboardPage() {
         {/* Advertisement */}
         <div className="col-span-1 md:col-span-1 flex flex-col xl:items-center xl:text-center xl:justify-center p-5 border border-chart-2 bg-chart-5 rounded-lg order-1 md:order-3">
           <h2 className="text-sm lg:text-lg text-chart-1 mb-5">PhishHook</h2>
-          <h1 className="text-[2.5rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem] font-light text-balance text-card-foreground leading-12 overflow-clip">
+          <h1 className="text-[2.5rem] md:text-[2rem] lg:text-[2.3rem] xl:text-[3rem] font-light text-balance text-card-foreground leading-12 overflow-clip">
             Get <span className="font-bold">Personalalized</span> Phishing
             <span className="font-bold"> Emails.</span>
           </h1>
