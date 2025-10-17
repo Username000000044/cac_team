@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 
 const subscription = [
@@ -15,6 +16,7 @@ const subscription = [
     title: "Starter Shield",
     price: "0.00",
     description: "A simple, effective way to begin your cybersecurity awareness journey.",
+    url: "/",
     features: [
       "✉️ 1 phishing test email per week (randomized style).",
       "⚡ Instant feedback after each test.",
@@ -26,6 +28,7 @@ const subscription = [
     title: "Smart Defender",
     price: "2.00",
     description: "Level up your personal phishing awareness with deeper insights and flexible learning.",
+    url: "/",
     features: [
       "📨 Up to 5 phishing test emails per week.",
       "📊 Progress history (see your last 5 results).",
@@ -37,6 +40,7 @@ const subscription = [
     title: "Team Guardian",
     price: "4.00",
     description: "Empower your entire team to stay sharp and cyber-aware together.",
+    url: "/",
     features: [
       "🏆 Group progress dashboard (shared leaderboard).",
       "🚨 Team-wide phishing challenge (weekly 'race to report').",
@@ -44,21 +48,22 @@ const subscription = [
       "⚡ Priority support.",
     ],
   },
+  
 ];
 
 export default function PhishingPage() {
   return (
     <div className="flex flex-1 bg-background border border-background p-0 ">
-      <div className="flex flex-wrap justify-center w-full text-primary-foreground">
+      <div className="flex flex-wrap justify-center gap-5 w-full text-primary-foreground">
         {subscription.map((item, i) => (
-          <Card className="group max-w-125 mx-2 bg-card border border-border hover:bg-linear-to-t hover:from-primary/8 hover:to-background hover:scale-102 transition duration-500" key={i}>
+          <Card className="group max-w-125 bg-card border border-border hover:bg-linear-to-t hover:from-primary/8 hover:to-background hover:scale-102 transition duration-500" key={i}>
             <CardHeader>
               <CardTitle className="text-4xl font-thin">{item.title}</CardTitle>
               <CardDescription className="text-lg">{item.description}</CardDescription>
               <CardAction className="text-muted-foreground">${item.price}</CardAction>
             </CardHeader>
             <CardContent>
-              <Button className={`${buttonVariants({ variant: "ghost"})}`}>Get {item.title}</Button>
+              <Button className={`${buttonVariants({ variant: "ghost"})}`} asChild><Link href={item.url}>Get {item.title}</Link></Button>
               <ol className="mt-10 text-sm text-muted-foreground">
                 {item.features.map((feature, i) => <li className="border-b py-2 text-lg" key={i}><span className="text-foreground">+</span> {feature}</li>)}
              </ol>
