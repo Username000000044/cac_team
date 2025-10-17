@@ -11,7 +11,7 @@ export default function RootLayout({
       <DashSideBar />
 
       {/* Main Content */}
-      <div className="flex-1 bg-card rounded-lg border border-border p-2">
+      <div className="flex-1 rounded-lg p-2">
         {children}
       </div>
     </div>

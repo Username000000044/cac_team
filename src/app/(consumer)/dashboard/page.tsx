@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function DashboardPage() {
   return (
-    <div className="flex">
+    <div className="flex bg-card border border-border">
       <div className="grid grid-cols-1 grid-rows-5 gap-5 w-full md:grid-cols-3 md:grid-rows-2">
         {/* Charts */}
         <ResponseBarChart className="col-span-full bg-background order-5 md:order-1" />

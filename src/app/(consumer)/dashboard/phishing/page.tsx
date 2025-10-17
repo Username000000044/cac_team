@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -48,19 +48,19 @@ const subscription = [
 
 export default function PhishingPage() {
   return (
-    <div className="flex flex-1">
-      <div className="flex flex-wrap justify-center w-full text-primary-foreground ">
+    <div className="flex flex-1 bg-background border border-background p-0 ">
+      <div className="flex flex-wrap justify-center w-full text-primary-foreground">
         {subscription.map((item, i) => (
-          <Card className="group w-1/3 bg-background border border-border hover:bg-linear-to-t hover:from-primary/8 hover:to-background hover:scale-102 transition duration-500" key={i}>
+          <Card className="group max-w-125 mx-2 bg-card border border-border hover:bg-linear-to-t hover:from-primary/8 hover:to-background hover:scale-102 transition duration-500" key={i}>
             <CardHeader>
-              <CardTitle className="text-3xl font-thin">{item.title}</CardTitle>
-              <CardDescription>{item.description}</CardDescription>
+              <CardTitle className="text-4xl font-thin">{item.title}</CardTitle>
+              <CardDescription className="text-lg">{item.description}</CardDescription>
               <CardAction className="text-muted-foreground">${item.price}</CardAction>
             </CardHeader>
             <CardContent>
-              <Button className="group-hover:bg-secondary">Get {item.title}</Button>
+              <Button className={`${buttonVariants({ variant: "ghost"})}`}>Get {item.title}</Button>
               <ol className="mt-10 text-sm text-muted-foreground">
-                {item.features.map((feature, i) => <li className="border-b py-2" key={i}>+ {feature}</li>)}
+                {item.features.map((feature, i) => <li className="border-b py-2 text-lg" key={i}><span className="text-foreground">+</span> {feature}</li>)}
              </ol>
             </CardContent>
           </Card>
