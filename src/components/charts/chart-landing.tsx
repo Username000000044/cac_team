@@ -155,7 +155,7 @@ export default function LandingChart() {
   );
 
   return (
-    <Card className="py-4 sm:py-0 !bg-transparent !bg-linear-to-t from-card to-card/0 to-95%">
+    <Card className="py-4 sm:py-0 !bg-transparent !bg-linear-to-t from-primary/5 to-card/0 to-95%">
       <CardContent className="px-2 sm:p-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
           <LineChart

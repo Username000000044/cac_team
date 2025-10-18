@@ -49,8 +49,8 @@ export const DashSideBar = () => {
                     })}
                     asChild
                   >
-                    <Link className="h-15" href={item.url}>
-                      <item.icon className="md:mx-auto !h-[1.4rem] !w-[1.4rem]" />
+                    <Link className="h-12 w-12" href={item.url}>
+                      <item.icon className="md:mx-auto !h-[1.2rem] !w-[1.2rem]" />
                       <p className="text-lg md:hidden">{item.title}</p>
                     </Link>
                   </SidebarMenuButton>

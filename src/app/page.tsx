@@ -3,6 +3,7 @@
 import PhishingDataChart from "@/components/charts/chart-landing";
 import { GlobePhishing } from "@/components/models/globe-amount";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { LogIn } from "lucide-react";
 
 import Link from "next/link";
 
@@ -41,7 +42,9 @@ export default function HomePage() {
                 className: "shadow-lg bg-secondary text-lg",
               })}
             >
-              <Link href="/login">Login</Link>
+              <Link href="/login">
+                <LogIn /> Login
+              </Link>
             </Button>
           </div>
         </div>

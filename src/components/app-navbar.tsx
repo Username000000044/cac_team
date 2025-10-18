@@ -65,7 +65,10 @@ const MainNavbar = () => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <Button asChild className={buttonVariants({ size: "lg" })}>
+      <Button
+        asChild
+        className={buttonVariants({ size: "lg", variant: "outline" })}
+      >
         <Link href="/login">
           <LogIn />
           <span className="hidden md:block">Login</span>
