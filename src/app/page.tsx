@@ -1,17 +1,17 @@
 "use client";
 
 import PhishingDataChart from "@/components/charts/chart-landing";
+import { GlobePhishing } from "@/components/models/globe-amount";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import Link from "next/link";
-import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-[1rem] px-8">
-      <section className="mx-auto max-w-[75rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[2fr_1fr] md:grid-rows-1 leading-tight">
-        <div className="relative z-2 flex flex-col justify-center items-center text-center p-4 md:text-left md:items-start md:p-0">
-          <h1 className="text-[2rem] md:text-[5.5rem] text-foreground font-bold md:leading-[5rem]">
+    <div className="flex flex-col gap-[1rem] px-8 overflow-hidden">
+      <section className="mt-10 mx-auto max-w-[110rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[2fr_1fr] md:grid-rows-1 leading-tight">
+        <div className="relative z-2 items-center text-center p-4 md:text-left md:items-start md:p-0">
+          <h1 className="text-[3rem] md:text-[7rem] text-foreground font-bold md:leading-[5.9rem]">
             Surf 🏄‍♂️
             <br />
             on the internet <br />
@@ -45,18 +45,12 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-        <div className="-mt-15 md:m-0 z-1">
-          <Image
-            className="rotate-10 opacity-25 mx-auto scale-70 shadow-[11px_11px_0px_0px_var(--card)] md:scale-90"
-            src="/hero.jpg"
-            width={300}
-            height={400}
-            alt="filler image for hero"
-          />
+        <div className="relative z-1">
+          <GlobePhishing />
         </div>
       </section>
 
-      <section className="relative -mt-30 md:-mt-20 z-0">
+      <section className="relative -mt-20 md:-mt-10 z-1">
         <PhishingDataChart />
       </section>
     </div>

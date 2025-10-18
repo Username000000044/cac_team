@@ -26,7 +26,7 @@ const items = [
   },
   {
     title: "Phishing",
-    url: "/dashboard/phishing",
+    url: "/dashboard/subscription",
     icon: Bug,
   },
 ];

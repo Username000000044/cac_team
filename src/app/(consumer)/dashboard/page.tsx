@@ -27,7 +27,7 @@ export default function DashboardPage() {
             })} mt-8 w-[70%] shadow-[0px_0px_15px_2px_var(--chart-3)] animate-pulse duration-3000`}
             asChild
           >
-            <Link href="/dashboard/phishing">Sign Up</Link>
+            <Link href="/dashboard/subscription">Sign Up</Link>
           </Button>
         </div>
 

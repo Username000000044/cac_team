@@ -140,7 +140,7 @@ const chartData = [
 const chartConfig = {
   attacks: {
     label: "Total Attacks",
-    color: "var(--chart-1)",
+    color: "var(--foreground)",
   },
 } satisfies ChartConfig;
 
@@ -149,13 +149,13 @@ export default function LandingChart() {
     () =>
       chartData.reduce(
         (accumulator, current) => accumulator + current.attacks,
-        0,
+        0
       ),
-    [],
+    []
   );
 
   return (
-    <Card className="py-4 sm:py-0 !bg-linear-to-t from-card to-background to-70%">
+    <Card className="py-4 sm:py-0 !bg-transparent !bg-linear-to-t from-card to-card/0 to-95%">
       <CardContent className="px-2 sm:p-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
           <LineChart
