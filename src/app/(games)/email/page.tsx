@@ -358,7 +358,7 @@ export default function URLPage() {
 
   return (
     <>
-      <div className="flex-1 w-full mx-auto gap-5 max-w-[90rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1">
+      <div className="flex-1 w-full mx-auto gap-5 max-w-[90rem] xl:max-w-[90rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1 z-2">
         <div className="flex flex-col gap-5">
           <Card className="h-[85%]">
             <CardHeader>

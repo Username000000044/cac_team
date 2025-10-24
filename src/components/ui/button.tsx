@@ -29,7 +29,7 @@ const buttonVariants = cva(
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         xl: "h-13 text-2xl lg:text-3xl rounded-md px-6 has-[>svg]:px-4",
-        hero: "h-10 md:h-12 text-2xl rounded-md px-6 has-[>svg]:px-4",
+        hero: "h-10 md:h-14 text-lg rounded-md has-[>svg]:px-4",
         game: "h-full text-2xl md:text-3xl grow rounded-md px-6 has-[>svg]:px-4",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
@@ -39,7 +39,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 function Button({

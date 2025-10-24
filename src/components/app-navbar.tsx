@@ -40,72 +40,77 @@ export const Navbar = () => {
 
 const MainNavbar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap ">
-      <NavigationMenu>
-        <Button className="w-10 h-10 bg-primary me-1.5" asChild>
-          <Link href={"/"}></Link>
-        </Button>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Games</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {games.map((game) => (
-                  <ListItem
-                    key={game.title}
-                    title={game.title}
-                    href={game.href}
-                  >
-                    {game.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+    <div className="w-full fixed p-8 z-4">
+      <div className=" flex items-center justify-between flex-wrap">
+        <NavigationMenu>
+          <Button className="w-10 h-10 bg-primary me-1.5" asChild>
+            <Link href={"/"}></Link>
+          </Button>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Games</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {games.map((game) => (
+                    <ListItem
+                      key={game.title}
+                      title={game.title}
+                      href={game.href}
+                      className=""
+                    >
+                      {game.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-      <Button
-        asChild
-        className={buttonVariants({ size: "lg", variant: "outline" })}
-      >
-        <Link href="/login">
-          <LogIn />
-          <span className="hidden md:block">Login</span>
-        </Link>
-      </Button>
+        <Button
+          asChild
+          className={buttonVariants({ size: "lg", variant: "outline" })}
+        >
+          <Link href="/login">
+            <LogIn />
+            <span className="hidden md:block">Login</span>
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 };
 
 const DashNavbar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap">
-      <NavigationMenu>
-        <Button className="w-10 h-10 bg-primary me-1.5" asChild>
-          <Link href={"/"}></Link>
-        </Button>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Games</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {games.map((game) => (
-                  <ListItem
-                    key={game.title}
-                    title={game.title}
-                    href={game.href}
-                  >
-                    {game.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+    <div className="w-full fixed p-8 z-4">
+      <div className="flex items-center justify-between flex-wrap">
+        <NavigationMenu>
+          <Button className="w-10 h-10 bg-primary me-1.5" asChild>
+            <Link href={"/"}></Link>
+          </Button>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Games</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {games.map((game) => (
+                    <ListItem
+                      key={game.title}
+                      title={game.title}
+                      href={game.href}
+                    >
+                      {game.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-      <SidebarTrigger className="flex md:hidden" />
+        <SidebarTrigger className="flex md:hidden" />
+      </div>
     </div>
   );
 };

@@ -140,7 +140,7 @@ const chartData = [
 const chartConfig = {
   attacks: {
     label: "Total Attacks",
-    color: "var(--foreground)",
+    color: "var(--secondary)",
   },
 } satisfies ChartConfig;
 

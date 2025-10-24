@@ -30,21 +30,42 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased dark min-h-screen flex flex-col`}
+        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased dark min-h-screen flex flex-col bg`}
       >
         <SidebarProvider className="flex flex-col">
           {/* Navbar */}
-          <div className="p-8">
+          <div className="">
             <Navbar />
           </div>
 
           {/* Page Content */}
-          <main className="flex flex-col pb-8">{children}</main>
+          <div className="relative w-full h-screen overflow-hidden bg-black pt-[99px]">
+            {/* Stars */}
+            <div className="absolute inset-0 z-0">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="star absolute bg-white rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    width: `${Math.random() * 2 + 1}px`,
+                    height: `${Math.random() * 2 + 1}px`,
+                    animation: `twinkle ${
+                      Math.random() * 5 + 3
+                    }s infinite alternate`,
+                  }}
+                ></div>
+              ))}
+            </div>
+            <main className="flex flex-col pb-8 z-1">{children}</main>
+            {/* Content over the stars */}
+          </div>
         </SidebarProvider>
         {/* Footer */}
-        <div className="px-8 pb-8">
+        {/* <div className="px-8 pb-8">
           <Footer />
-        </div>
+        </div> */}
       </body>
     </html>
   );
