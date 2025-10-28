@@ -30,7 +30,7 @@ export const GlobePhishing = () => {
   const weightColor = scaleSequentialSqrt(interpolateMagma).domain([0, 1e7]);
 
   return (
-    <div className="absolute -left-200 -top-10 md:-top-60 scale-40 opacity-100 ">
+    <div className="absolute sm:-top-10 md:-left-200 md:-top-60 md:scale-40 opacity-100 ">
       <Globe
         ref={globeEl}
         globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"

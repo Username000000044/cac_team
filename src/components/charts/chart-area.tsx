@@ -1,23 +1,30 @@
 "use client";
 
 import * as React from "react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
-
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 export const description = "An interactive line chart";
 
 const chartData = [
@@ -144,29 +151,33 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function LandingChart() {
-  const total = React.useMemo(
-    () =>
-      chartData.reduce(
-        (accumulator, current) => accumulator + current.attacks,
-        0
-      ),
-    []
-  );
-
+export default function AreaPhishing() {
   return (
-    <Card className="py-4 sm:py-0 !bg-transparent !bg-linear-to-t from-primary/5 to-card/0 to-95%">
-      <CardContent className="px-2 sm:p-6">
-        <ChartContainer config={chartConfig} className="aspect-auto h-[250px]">
-          <LineChart
-            accessibilityLayer
+    <Card className="absolute mt-[20rem] pt-0 w-full  rounded-none bg-transparent">
+      <CardContent className="p-0">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[450px] w-full "
+        >
+          <AreaChart
             data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           >
-            {/* <CartesianGrid vertical={false} /> */}
+            <defs>
+              <linearGradient id="fillAbove" x1="1" y1="0" x2="" y2="1">
+                <stop
+                  offset="0%"
+                  stopColor="var(--color-none)"
+                  stopOpacity={0}
+                />
+                <stop
+                  offset="100%"
+                  stopColor="var(--color-attacks)"
+                  stopOpacity={0.5}
+                />
+              </linearGradient>
+            </defs>
+            <CartesianGrid vertical={false} horizontal={false} />
             <XAxis
               dataKey="date"
               tickLine={false}
@@ -176,50 +187,35 @@ export default function LandingChart() {
               tickFormatter={(value) => {
                 const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
-                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
                 });
               }}
             />
             <ChartTooltip
+              cursor={false}
               content={
                 <ChartTooltipContent
-                  className="w-[150px]"
-                  nameKey="views"
                   labelFormatter={(value) => {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
-                      year: "numeric",
+                      day: "numeric",
                     });
                   }}
+                  indicator="dot"
                 />
               }
             />
-            <Line
+            <Area
+              type="natural"
               dataKey="attacks"
-              type="monotone"
-              stroke={chartConfig.attacks.color}
-              strokeWidth={1}
-              dot={false}
+              stroke="var(--color-attacks)"
+              fill="url(#fillAbove)"
+              baseValue="dataMax"
             />
-          </LineChart>
+            {/* <ChartLegend content={<ChartLegendContent />} /> */}
+          </AreaChart>
         </ChartContainer>
-        <CardHeader className="flex flex-col items-stretch !p-0 mt-5 sm:flex-row ">
-          <div className="flex flex-1 flex-col justify-center gap-1 px-6 pb-3 sm:pb-0">
-            <CardTitle>Phishing Attacks Data</CardTitle>
-            <CardDescription>
-              Showing approximate amount of phishing attacks from the past 10
-              years.
-            </CardDescription>
-          </div>
-          <div className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left sm:border-t-0 sm:px-8 sm:py-6 md:border-l">
-            <span className="text-muted-foreground text-xs">
-              {chartConfig.attacks.label}
-            </span>
-            <span className="text-lg leading-none font-bold sm:text-3xl">
-              {total.toLocaleString()}
-            </span>
-          </div>
-        </CardHeader>
       </CardContent>
     </Card>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import PhishingDataChart from "@/components/charts/chart-landing";
 import { GlobePhishing } from "@/components/models/globe-amount";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
@@ -9,10 +8,10 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 px-8 h-full">
-      <section className="xl:mt-10 mx-auto max-w-[110rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1 leading-tight">
+    <div className="flex px-8 h-screen items-center">
+      <section className="mx-auto max-w-[110rem] grid grid-cols-1 grid-rows-2 md:grid-cols-[3fr_1fr] md:grid-rows-1 leading-tight">
         <div className="relative z-2 items-center text-center p-4 md:text-left md:items-start md:p-0">
-          <h1 className="text-[4rem] md:text-[7rem] 2xl:text-[11rem] text-foreground font-bold leading-[3.4rem] md:leading-[5rem] 2xl:leading-[9.5rem] mt-20">
+          <h1 className="text-[4rem] md:text-[7rem] 2xl:text-[11rem] text-foreground font-bold leading-[3.4rem] md:leading-[5rem] 2xl:leading-[9.5rem]">
             surf 🏄‍♂️
             <br />
             on the internet <br />
@@ -52,10 +51,6 @@ export default function HomePage() {
           <GlobePhishing />
         </div>
       </section>
-
-      {/* <section className="relative -mt-30 md:-mt-0 z-1">
-        <PhishingDataChart />
-      </section> */}
     </div>
   );
 }

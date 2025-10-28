@@ -3,8 +3,6 @@ import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Navbar } from "@/components/app-navbar";
-import { Footer } from "@/components/app-footer";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-sans",
@@ -30,16 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased dark min-h-screen flex flex-col bg`}
+        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased dark min-h-full flex flex-col`}
       >
-        <SidebarProvider className="flex flex-col">
+        <div className="flex flex-col">
           {/* Navbar */}
-          <div className="">
-            <Navbar />
-          </div>
+          <Navbar />
 
           {/* Page Content */}
-          <div className="relative w-full h-screen overflow-hidden bg-black pt-[99px]">
+          <div className="relative w-full h-screen min-h-screen overflow-x-hidden bg-background">
             {/* Stars */}
             <div className="absolute inset-0 z-0">
               {Array.from({ length: 100 }).map((_, i) => (
@@ -58,14 +54,11 @@ export default function RootLayout({
                 ></div>
               ))}
             </div>
-            <main className="flex flex-col pb-8 z-1">{children}</main>
+
             {/* Content over the stars */}
+            <main className="flex flex-col z-1">{children}</main>
           </div>
-        </SidebarProvider>
-        {/* Footer */}
-        {/* <div className="px-8 pb-8">
-          <Footer />
-        </div> */}
+        </div>
       </body>
     </html>
   );

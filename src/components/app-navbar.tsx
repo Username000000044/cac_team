@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button, buttonVariants } from "./ui/button";
 import { LogIn } from "lucide-react";
-import { SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 
 const games: { title: string; href: string; description: string }[] = [
   {
@@ -33,14 +32,12 @@ const games: { title: string; href: string; description: string }[] = [
 export const Navbar = () => {
   const pathname = usePathname();
 
-  return (
-    <>{pathname.includes("/dashboard") ? <DashNavbar /> : <MainNavbar />}</>
-  );
+  return <>{!pathname.includes("/dashboard") ? <MainNavbar /> : null}</>;
 };
 
 const MainNavbar = () => {
   return (
-    <div className="w-full fixed p-8 z-4">
+    <div className="w-full fixed p-6 z-4">
       <div className=" flex items-center justify-between flex-wrap">
         <NavigationMenu>
           <Button className="w-10 h-10 bg-primary me-1.5" asChild>
@@ -109,7 +106,15 @@ const DashNavbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <SidebarTrigger className="flex md:hidden" />
+        <Button
+          asChild
+          className={buttonVariants({ size: "lg", variant: "outline" })}
+        >
+          <Link href="/login">
+            <LogIn />
+            <span className="hidden md:block">Login</span>
+          </Link>
+        </Button>
       </div>
     </div>
   );

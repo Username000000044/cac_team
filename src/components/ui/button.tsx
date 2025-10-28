@@ -21,8 +21,6 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         phishing:
           "bg-chart-2 text-chart-6 border border-chart-1 hover:bg-chart-3 hover:text-chart-1 hover:border-chart-2 transition ease-in-out duration-300",
-        sidebar_active:
-          "bg-primary text-primary-foreground hover:text-primary-foreground hover:bg-primary/80 transition duration-300 ease-in-out",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
