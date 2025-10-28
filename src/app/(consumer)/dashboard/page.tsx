@@ -50,10 +50,8 @@ export default function DashboardPage() {
                 according to major data sites.
               </h3> */}
             </div>
-
             {/* Graph */}
             <AreaPhishing />
-
             {/* Cards */}
 
             <div className="relative top-120 left-9 font-mono">
