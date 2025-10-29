@@ -6,7 +6,16 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { ChevronDown, ChevronUp, GitPullRequestClosed } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import {
+  ChevronDown,
+  ChevronUp,
+  GitPullRequestClosed,
+  Search,
+  Shrimp,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function DashboardPage() {
   return (
@@ -16,7 +25,7 @@ export default function DashboardPage() {
         className="min-h-screen max-w-full md:min-w-[450px]"
       >
         <ResizablePanel defaultSize={75} minSize={50}>
-          <div className="relative flex flex-col h-full p-0">
+          <div className="relative flex flex-col h-full p-0 overflow-y-auto overflow-x-hidden no-scrollbar">
             {/* Nav */}
             <div className="flex justify-between items-center mx-12 my-10">
               <div className="flex items-center">
@@ -35,7 +44,7 @@ export default function DashboardPage() {
             {/* Text */}
             <div className="ml-40 mt-20 text-focus-in">
               <span className="flex flex-col">
-                <h1 className="text-[7rem] bg-gradient-to-r from-foreground to-secondary inline-block text-transparent bg-clip-text ">
+                <h1 className="text-[8rem] bg-gradient-to-r from-foreground from-10% to-background to-70% inline-block text-transparent bg-clip-text ">
                   $10.000.000.000.000
                 </h1>
               </span>
@@ -54,23 +63,83 @@ export default function DashboardPage() {
             <AreaPhishing />
             {/* Cards */}
 
-            <div className="relative top-120 left-9 font-mono">
-              <p className="text-lg">
+            <div className="relative top-110 m-10">
+              <p className="font-mono">
                 What caused this{" "}
                 <span className="text-secondary">ungovernable situation?</span>
               </p>
-              <div className="grid grid-cols-4 gap-4 mt-10 ">
-                <div className="h-25 w-min bg-card border-l-4 p-5 border-yellow-500">
-                  Lorem Ipsum
+              <div className="grid grid-cols-3 max-w-full gap-4 mt-10 ">
+                <div className="bg-card border-l-4 p-5 border-red-500">
+                  <h3>Malicious attachments</h3>
+                  <p className="text-muted-foreground">
+                    These are files sent in emails that can install harmful
+                    software when opened. They often pretend to be invoices,
+                    resumes, or important documents.
+                  </p>
                 </div>
-                <div className="h-25 w-min bg-card border-l-4 p-5 border-yellow-500">
-                  Lorem Ipsum
+                <div className="bg-card border-l-4 p-5 border-red-500">
+                  <h3>Social engineering</h3>
+                  <p className="text-muted-foreground">
+                    Scammers trick people into giving away information by
+                    pretending to be someone trustworthy. They use emotions like
+                    fear or urgency to make you act quickly.
+                  </p>
                 </div>
-                <div className="h-25 w-min bg-card border-l-4 p-5 border-yellow-500">
-                  Lorem Ipsum
+                <div className="bg-card border-l-4 p-5 border-red-500">
+                  <h3>Spelling and layout</h3>
+                  <p className="text-muted-foreground">
+                    Many phishing emails have bad grammar, strange wording, or
+                    odd designs. These small mistakes can be clues that the
+                    message isn’t real.
+                  </p>
                 </div>
-                <div className="h-25 w-min bg-card border-l-4 p-5 border-yellow-500">
-                  Lorem Ipsum
+                <div className="bg-card border-l-4 p-5 border-red-500">
+                  <h3>Requests for information</h3>
+                  <p className="text-muted-foreground">
+                    Phishing emails often ask for personal details like
+                    passwords or credit cards. Legitimate companies will never
+                    ask for this over email.
+                  </p>
+                </div>
+                <div className="bg-card border-l-4 p-5 border-yellow-500">
+                  <h3>Email spoofing</h3>
+                  <p className="text-muted-foreground">
+                    Scammers make emails look like they’re from real people or
+                    companies. The sender’s address might be slightly misspelled
+                    or fake.
+                  </p>
+                </div>
+                <div className="bg-card border-l-4 p-5 border-yellow-500">
+                  <h3>Fear of repercussions</h3>
+                  <p className="text-muted-foreground">
+                    Some messages scare you by claiming you’ll lose access or
+                    face trouble if you don’t respond. This pressure is used to
+                    make you act before thinking.
+                  </p>
+                </div>
+                <div className="bg-card border-l-4 p-5 border-green-500">
+                  <h3>Hidden Links</h3>
+                  <p className="text-muted-foreground">
+                    Links in phishing emails may look safe but lead to fake
+                    websites. Hovering over them shows the real address before
+                    clicking.
+                  </p>
+                </div>
+                <div className="bg-card border-l-4 p-5 border-green-500">
+                  <h3>Unreasonable threats</h3>
+                  <p className="text-muted-foreground">
+                    Phishing messages often use threats like account suspension
+                    or fines. These are fake warnings meant to make you panic
+                    and click.
+                  </p>
+                </div>
+                <div className="bg-card border-l-4 p-5 border-green-500">
+                  <h3>Unusual greetings</h3>
+                  <p className="text-muted-foreground">
+                    Messages that start with “Dear user” or other odd greetings
+                    can be suspicious. Real companies usually use your real
+                    name.
+                  </p>
                 </div>
               </div>
             </div>
@@ -78,41 +147,106 @@ export default function DashboardPage() {
           <h1 className="text-foreground text-[10rem]">$1000</h1>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={25}>
-          <div className="flex h-full items-center justify-center bg-card p-6">
-            <span className="font-semibold">Sidebar</span>
+        <ResizablePanel defaultSize={25} minSize={25}>
+          <div className="flex h-full bg-card">
+            <div className="mx-12 my-10 w-full">
+              {/* Nav */}
+              <div className="flex justify-end items-center">
+                <Link href="/account">
+                  <Image
+                    width={100}
+                    height={100}
+                    src="https://avatar.iran.liara.run/public/"
+                    alt="user"
+                    className="rounded-full bg-background w-12 h-12"
+                  ></Image>
+                </Link>
+              </div>
+              {/* Title */}
+              <div className="mt-40 flex items-center justify-between">
+                <h3 className="text-3xl">
+                  <b>Phishing</b> Tools
+                </h3>
+                {/* Used to immitate search functionality.*/}
+                <Link href="#">
+                  <Search size={20} />
+                </Link>
+              </div>
+
+              <Separator className="my-4 bg-muted" />
+
+              {/* Phishing Access */}
+              <Link href="dashboard/phishing">
+                <div className="w-full h-min px-10 py-15 bg-background/60 rounded-lg ">
+                  <h3 className="flex items-center text-3xl">
+                    <b>User</b>&nbsp;dashboard
+                  </h3>
+                  <h4 className="text-lg">
+                    Access a free personalized phishing plan.
+                  </h4>
+
+                  <Button
+                    className={`mt-5 ${buttonVariants({
+                      variant: "secondary",
+                    })}`}
+                  >
+                    Access Phishing Simulator
+                  </Button>
+                </div>
+              </Link>
+
+              {/* <Separator className="my-4 bg-muted" /> */}
+
+              {/* Boxes */}
+              <div className="flex flex-col">
+                {/* <p className="mt-5 text-muted-foreground">Info</p>
+                <div className="flex mt-5">
+                  <div className="w-[3px] bg-muted rounded"></div>
+                  <div className="ml-4 flex flex-col gap-5 flex-1">
+                    <Link href="/info">
+                      <div className="relative h-15 rounded-lg overflow-hidden">
+                        <div className="absolute inset-0 bg-[url(/img/graph.png)] bg-cover bg-top"></div>
+                        <div className="absolute inset-0 bg-background/30 backdrop-blur-[4px]"></div>
+                        <h3 className="relative z-10 flex items-center justify-center h-full text-2xl">
+                          <b>Phishing</b>
+                          &nbsp;Info
+                        </h3>
+                      </div>
+                    </Link>
+                  </div>
+                </div> */}
+
+                {/* Games Group */}
+                <div className="flex mt-5">
+                  {/* Gap between separator and boxes */}
+                  <div className="flex flex-col gap-3 flex-1">
+                    {/* Box 1 */}
+                    <Link href="/url">
+                      <div className="relative h-20 rounded-lg overflow-hidden shadow-md">
+                        <div className="absolute inset-0 bg-[url(/img/game2.jpg)] bg-cover bg-center"></div>
+                        <div className="absolute inset-0 bg-card/90 backdrop-blur-sm"></div>
+                        <h3 className="relative z-10 flex items-center justify-center h-full text-2xl text-muted-foreground">
+                          <b>URL</b> Game
+                        </h3>
+                      </div>
+                    </Link>
+                    {/* Box 2 */}
+                    <Link href="/email">
+                      <div className="relative h-20 rounded-lg overflow-hidden shadow-md">
+                        <div className="absolute inset-0 bg-[url(/img/game1.jpg)] bg-cover bg-center"></div>
+                        <div className="absolute inset-0 bg-card/90 backdrop-blur-sm"></div>
+                        <h3 className="relative z-10 flex items-center justify-center h-full text-2xl text-muted-foreground">
+                          <b>Email</b> Game
+                        </h3>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
   );
 }
-
-// <div className="flex">
-//       <div className="grid grid-cols-1 grid-rows-5 gap-5 w-full md:grid-cols-3 md:grid-rows-2">
-//         {/* Charts */}
-//         <ResponseBarChart className="col-span-full bg-card order-5 md:order-1" />
-//         <AgePieChart className="col-span-1 bg-card order-3 md:order-2" />
-
-//         {/* Advertisement */}
-//         <div className="col-span-1 md:col-span-1 flex flex-col xl:items-center xl:text-center xl:justify-center p-5 border border-chart-2 bg-chart-5 rounded-lg order-1 md:order-3">
-//           <h2 className="text-sm lg:text-lg text-chart-1 mb-5">PhishHook</h2>
-//           <h1 className="text-[2.5rem] md:text-[2rem] lg:text-[2.3rem] xl:text-[3rem] font-light text-balance text-card-foreground leading-12 overflow-clip">
-//             Get <span className="font-bold">Personalalized</span> Phishing
-//             <span className="font-bold"> Emails.</span>
-//           </h1>
-//           <Button
-//             className={`${buttonVariants({
-//               size: "xl",
-//               variant: "phishing",
-//             })} mt-8 w-[70%] shadow-[0px_0px_15px_2px_var(--chart-3)] animate-pulse duration-3000`}
-//             asChild
-//           >
-//             <Link href="/dashboard/subscription">Sign Up</Link>
-//           </Button>
-//         </div>
-
-//         {/* Charts */}
-//         <PopulationBarChart className="col-span-1 bg-card order-4 md:order-4" />
-//       </div>
-//     </div>

@@ -37,7 +37,7 @@ export default function RootLayout({
           {/* Page Content */}
           <div className="relative w-full h-screen min-h-screen overflow-x-hidden bg-background">
             {/* Stars */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 opacity-25">
               {Array.from({ length: 100 }).map((_, i) => (
                 <div
                   key={i}
