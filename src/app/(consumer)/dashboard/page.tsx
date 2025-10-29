@@ -8,7 +8,33 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+
+import {
   ChevronDown,
+  ChevronDownIcon,
   ChevronUp,
   GitPullRequestClosed,
   Search,
@@ -16,6 +42,21 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
 export default function DashboardPage() {
   return (
@@ -29,12 +70,7 @@ export default function DashboardPage() {
             {/* Nav */}
             <div className="flex justify-between items-center mx-12 my-10">
               <div className="flex items-center">
-                <Button
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "icon-lg",
-                  })}
-                >
+                <Button variant="outline" size="icon-lg">
                   <GitPullRequestClosed />
                 </Button>
                 <p className="text-muted ml-20">attacks / 3 months</p>
@@ -148,8 +184,8 @@ export default function DashboardPage() {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={25} minSize={25}>
-          <div className="flex h-full bg-card">
-            <div className="mx-12 my-10 w-full">
+          <div className="flex h-full bg-card/60">
+            <div className="px-5 my-10 w-full">
               {/* Nav */}
               <div className="flex justify-end items-center">
                 <Link href="/account">
@@ -176,24 +212,74 @@ export default function DashboardPage() {
               <Separator className="my-4 bg-muted" />
 
               {/* Phishing Access */}
-              <Link href="dashboard/phishing">
-                <div className="w-full h-min px-10 py-15 bg-background/60 rounded-lg ">
-                  <h3 className="flex items-center text-3xl">
-                    <b>User</b>&nbsp;dashboard
-                  </h3>
-                  <h4 className="text-lg">
-                    Access a free personalized phishing plan.
-                  </h4>
 
-                  <Button
-                    className={`mt-5 ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
-                  >
-                    Access Phishing Simulator
-                  </Button>
-                </div>
-              </Link>
+              <div className="w-full h-min px-10 py-15 bg-background/60 rounded-lg ">
+                <h3 className="flex items-center text-3xl">
+                  <b>User</b>&nbsp;dashboard
+                </h3>
+                <h4 className="text-lg">
+                  Access a free personalized phishing plan.
+                </h4>
+
+                <Dialog>
+                  <form>
+                    <DialogTrigger asChild>
+                      <Button
+                        className={`mt-5 ${buttonVariants({
+                          variant: "secondary",
+                        })}`}
+                      >
+                        Start Phishing Simulator
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>
+                          Create <b>Phishing</b> environment
+                        </DialogTitle>
+                        <DialogDescription>
+                          Personalize your phishing environment to suit your
+                          personal online needs.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4">
+                        <div className="grid gap-3">
+                          <Label htmlFor="amount">Number of emails/week</Label>
+                          <Input
+                            id="amount"
+                            type="number"
+                            inputMode="numeric"
+                            defaultValue="5"
+                          />
+                        </div>
+                        <div className="grid gap-3">
+                          <Label htmlFor="duration">
+                            Duration (Send emails until)
+                          </Label>
+                          <Input id="duration" type="datetime-local" />
+                        </div>
+                        <div className="grid gap-3">
+                          <Label htmlFor="difficulty">Difficulty</Label>
+                          <Input id="difficulty" type="text" />
+                        </div>
+                      </div>
+
+                      <DialogFooter>
+                        <DialogClose asChild>
+                          <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Button type="submit">Save changes</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </form>
+                </Dialog>
+
+                <Link href="/dashboard/phishing">
+                  <p className="text-sm text-foreground/20 p-1 hover:underline">
+                    or view existing simulator
+                  </p>
+                </Link>
+              </div>
 
               {/* <Separator className="my-4 bg-muted" /> */}
 
@@ -250,3 +336,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+function simSignUp() {}

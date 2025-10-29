@@ -147,7 +147,7 @@ const chartData = [
 const chartConfig = {
   attacks: {
     label: "Total Attacks",
-    color: "var(--secondary)",
+    color: "var(--card-foreground)",
   },
 } satisfies ChartConfig;
 
@@ -171,7 +171,7 @@ export default function AreaPhishing() {
                   stopOpacity={0}
                 />
                 <stop
-                  offset="100%"
+                  offset="140%"
                   stopColor="var(--color-attacks)"
                   stopOpacity={0.5}
                 />
