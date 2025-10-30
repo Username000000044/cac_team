@@ -22,7 +22,9 @@ export default function LogInPage() {
             Enter your email below to login to your account
           </CardDescription>
           <CardAction>
-            <Button variant="link">Sign Up</Button>
+            <Button variant="link" className="text-secondary">
+              Sign Up
+            </Button>
           </CardAction>
         </CardHeader>
         <CardContent>
@@ -33,7 +35,7 @@ export default function LogInPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="congress@example.com"
+                  placeholder="example@yahoo.com"
                   required
                 />
               </div>
@@ -53,7 +55,7 @@ export default function LogInPage() {
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" asChild>
+          <Button type="submit" variant="secondary" className="w-full" asChild>
             <Link href="/dashboard">Login</Link>
           </Button>
           <Button variant="outline" className="w-full">

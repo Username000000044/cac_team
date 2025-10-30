@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 import {
   NavigationMenu,
@@ -40,9 +41,15 @@ const MainNavbar = () => {
     <div className="w-full fixed p-6 z-4">
       <div className=" flex items-center justify-between flex-wrap">
         <NavigationMenu>
-          <Button className="w-10 h-10 bg-primary me-1.5" asChild>
-            <Link href={"/"}></Link>
-          </Button>
+          <Link href="/">
+            <Image
+              src="/img/logo.svg"
+              alt="logo"
+              width={100}
+              height={100}
+              className="w-10 h-10 me-1.5"
+            ></Image>
+          </Link>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Games</NavigationMenuTrigger>
@@ -54,48 +61,6 @@ const MainNavbar = () => {
                       title={game.title}
                       href={game.href}
                       className=""
-                    >
-                      {game.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        <Button
-          asChild
-          className={buttonVariants({ size: "lg", variant: "outline" })}
-        >
-          <Link href="/login">
-            <LogIn />
-            <span className="hidden md:block">Login</span>
-          </Link>
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-const DashNavbar = () => {
-  return (
-    <div className="w-full fixed p-8 z-4">
-      <div className="flex items-center justify-between flex-wrap">
-        <NavigationMenu>
-          <Button className="w-10 h-10 bg-primary me-1.5" asChild>
-            <Link href={"/"}></Link>
-          </Button>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Games</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[300px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  {games.map((game) => (
-                    <ListItem
-                      key={game.title}
-                      title={game.title}
-                      href={game.href}
                     >
                       {game.description}
                     </ListItem>

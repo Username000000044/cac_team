@@ -1,5 +1,6 @@
+"use client";
+
 import AreaPhishing from "@/components/charts/chart-area";
-import { ResponseBarChart } from "@/components/charts/chart-response";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   ResizableHandle,
@@ -26,46 +27,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-
-import {
   ChevronDown,
   ChevronDownIcon,
   ChevronUp,
+  DraftingCompass,
   GitPullRequestClosed,
   Search,
   Shrimp,
+  Smartphone,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { SetStateAction, useState } from "react";
 
 export default function DashboardPage() {
+  const [difficulty, setDifficulty] = useState("Select Difficuluty");
+
+  const handleSelect = (difficulty: SetStateAction<string>) => {
+    setDifficulty(difficulty);
+  };
+
   return (
     <div>
       <ResizablePanelGroup
         direction="horizontal"
         className="min-h-screen max-w-full md:min-w-[450px]"
       >
-        <ResizablePanel defaultSize={75} minSize={50}>
+        <ResizablePanel defaultSize={82} minSize={50}>
           <div className="relative flex flex-col h-full p-0 overflow-y-auto overflow-x-hidden no-scrollbar">
             {/* Nav */}
             <div className="flex justify-between items-center mx-12 my-10">
@@ -75,7 +65,15 @@ export default function DashboardPage() {
                 </Button>
                 <p className="text-muted ml-20">attacks / 3 months</p>
               </div>
-              <div className="w-30 h-10 bg-card border border-border rounded-lg"></div>
+              {/* <Link href="/">
+                <Image
+                  src="/img/logo.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="w-10 h-10 opacity-50"
+                ></Image>
+              </Link> */}
             </div>
             {/* Text */}
             <div className="ml-40 mt-20 text-focus-in">
@@ -85,8 +83,8 @@ export default function DashboardPage() {
                 </h1>
               </span>
               <div className="flex items-center -mt-10">
-                <ChevronDown color="var(--color-red-500)" size={20} />
-                <h2 className="text-red-500 text-[2.5rem] mt-6">
+                <ChevronDown color="var(--primary)" size={20} />
+                <h2 className="text-primary text-[2.5rem] mt-6">
                   17.400.000.000 (57.471,3%)
                 </h2>
               </div>
@@ -102,10 +100,10 @@ export default function DashboardPage() {
             <div className="relative top-110 m-10">
               <p className="font-mono">
                 What caused this{" "}
-                <span className="text-secondary">ungovernable situation?</span>
+                <span className="text-primary">ungovernable situation?</span>
               </p>
               <div className="grid grid-cols-3 max-w-full gap-4 mt-10 ">
-                <div className="bg-card border-l-4 p-5 border-red-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Malicious attachments</h3>
                   <p className="text-muted-foreground">
                     These are files sent in emails that can install harmful
@@ -113,7 +111,7 @@ export default function DashboardPage() {
                     resumes, or important documents.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-red-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Social engineering</h3>
                   <p className="text-muted-foreground">
                     Scammers trick people into giving away information by
@@ -121,7 +119,7 @@ export default function DashboardPage() {
                     fear or urgency to make you act quickly.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-red-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Spelling and layout</h3>
                   <p className="text-muted-foreground">
                     Many phishing emails have bad grammar, strange wording, or
@@ -129,7 +127,7 @@ export default function DashboardPage() {
                     message isn’t real.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-red-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Requests for information</h3>
                   <p className="text-muted-foreground">
                     Phishing emails often ask for personal details like
@@ -137,7 +135,7 @@ export default function DashboardPage() {
                     ask for this over email.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-yellow-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Email spoofing</h3>
                   <p className="text-muted-foreground">
                     Scammers make emails look like they’re from real people or
@@ -145,7 +143,7 @@ export default function DashboardPage() {
                     or fake.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-yellow-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Fear of repercussions</h3>
                   <p className="text-muted-foreground">
                     Some messages scare you by claiming you’ll lose access or
@@ -153,7 +151,7 @@ export default function DashboardPage() {
                     make you act before thinking.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-green-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Hidden Links</h3>
                   <p className="text-muted-foreground">
                     Links in phishing emails may look safe but lead to fake
@@ -161,7 +159,7 @@ export default function DashboardPage() {
                     clicking.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-green-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Unreasonable threats</h3>
                   <p className="text-muted-foreground">
                     Phishing messages often use threats like account suspension
@@ -169,7 +167,7 @@ export default function DashboardPage() {
                     and click.
                   </p>
                 </div>
-                <div className="bg-card border-l-4 p-5 border-green-500">
+                <div className="bg-card border-l-4 p-5 border-foreground/5">
                   <h3>Unusual greetings</h3>
                   <p className="text-muted-foreground">
                     Messages that start with “Dear user” or other odd greetings
@@ -183,7 +181,7 @@ export default function DashboardPage() {
           <h1 className="text-foreground text-[10rem]">$1000</h1>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={25} minSize={25}>
+        <ResizablePanel defaultSize={18} minSize={15}>
           <div className="flex h-full bg-card/60">
             <div className="px-5 my-10 w-full">
               {/* Nav */}
@@ -200,13 +198,10 @@ export default function DashboardPage() {
               </div>
               {/* Title */}
               <div className="mt-40 flex items-center justify-between">
-                <h3 className="text-3xl">
+                <h3 className="text-3xl text-white">
                   <b>Phishing</b> Tools
                 </h3>
                 {/* Used to immitate search functionality.*/}
-                <Link href="#">
-                  <Search size={20} />
-                </Link>
               </div>
 
               <Separator className="my-4 bg-muted" />
@@ -224,11 +219,8 @@ export default function DashboardPage() {
                 <Dialog>
                   <form>
                     <DialogTrigger asChild>
-                      <Button
-                        className={`mt-5 ${buttonVariants({
-                          variant: "secondary",
-                        })}`}
-                      >
+                      <Button className="mt-5">
+                        <DraftingCompass />
                         Start Phishing Simulator
                       </Button>
                     </DialogTrigger>
@@ -237,12 +229,21 @@ export default function DashboardPage() {
                         <DialogTitle>
                           Create <b>Phishing</b> environment
                         </DialogTitle>
-                        <DialogDescription>
+                        <DialogDescription className="mb-5">
                           Personalize your phishing environment to suit your
                           personal online needs.
                         </DialogDescription>
                       </DialogHeader>
                       <div className="grid gap-4">
+                        <div className="grid gap-3">
+                          <Label htmlFor="amount">Email</Label>
+                          <Input
+                            id="email"
+                            type="text"
+                            defaultValue="example@yahoo.com"
+                            className="text-muted-foreground"
+                          />
+                        </div>
                         <div className="grid gap-3">
                           <Label htmlFor="amount">Number of emails/week</Label>
                           <Input
@@ -250,17 +251,48 @@ export default function DashboardPage() {
                             type="number"
                             inputMode="numeric"
                             defaultValue="5"
+                            className="text-muted-foreground"
                           />
                         </div>
                         <div className="grid gap-3">
                           <Label htmlFor="duration">
                             Duration (Send emails until)
                           </Label>
-                          <Input id="duration" type="datetime-local" />
+                          <Input
+                            id="duration"
+                            type="date"
+                            className="text-muted-foreground"
+                          />
                         </div>
                         <div className="grid gap-3">
-                          <Label htmlFor="difficulty">Difficulty</Label>
-                          <Input id="difficulty" type="text" />
+                          <p className="text-sm">Difficulty</p>
+                          <div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="outline" className="w-full">
+                                  {difficulty}
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                  onSelect={() => handleSelect("Easy")}
+                                >
+                                  Easy
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() => handleSelect("Medium")}
+                                >
+                                  Medium
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onSelect={() => handleSelect("Hard")}
+                                >
+                                  Hard
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                         </div>
                       </div>
 
@@ -268,7 +300,9 @@ export default function DashboardPage() {
                         <DialogClose asChild>
                           <Button variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button type="submit">Save changes</Button>
+                        <Button type="submit" asChild>
+                          <Link href="/dashboard/phishing">Create</Link>
+                        </Button>
                       </DialogFooter>
                     </DialogContent>
                   </form>
@@ -280,8 +314,26 @@ export default function DashboardPage() {
                   </p>
                 </Link>
               </div>
+              {/* Games Group */}
+              <div className="flex mt-5 w-ful">
+                {/* Gap between separator and boxes */}
+                <div className="flex gap-3 items-center w-full">
+                  {/* Box 1 */}
+                  <Button variant="outline" asChild>
+                    <Link href="/url" className="grow text-muted-foreground">
+                      URL Game
+                    </Link>
+                  </Button>
+                  <Separator className="my-4 bg-muted" orientation="vertical" />
 
-              {/* <Separator className="my-4 bg-muted" /> */}
+                  {/* Box 2 */}
+                  <Button variant="outline" asChild>
+                    <Link href="/url" className="grow text-muted-foreground">
+                      Email Game
+                    </Link>
+                  </Button>
+                </div>
+              </div>
 
               {/* Boxes */}
               <div className="flex flex-col">
@@ -301,33 +353,6 @@ export default function DashboardPage() {
                     </Link>
                   </div>
                 </div> */}
-
-                {/* Games Group */}
-                <div className="flex mt-5">
-                  {/* Gap between separator and boxes */}
-                  <div className="flex flex-col gap-3 flex-1">
-                    {/* Box 1 */}
-                    <Link href="/url">
-                      <div className="relative h-20 rounded-lg overflow-hidden shadow-md">
-                        <div className="absolute inset-0 bg-[url(/img/game2.jpg)] bg-cover bg-center"></div>
-                        <div className="absolute inset-0 bg-card/90 backdrop-blur-sm"></div>
-                        <h3 className="relative z-10 flex items-center justify-center h-full text-2xl text-muted-foreground">
-                          <b>URL</b> Game
-                        </h3>
-                      </div>
-                    </Link>
-                    {/* Box 2 */}
-                    <Link href="/email">
-                      <div className="relative h-20 rounded-lg overflow-hidden shadow-md">
-                        <div className="absolute inset-0 bg-[url(/img/game1.jpg)] bg-cover bg-center"></div>
-                        <div className="absolute inset-0 bg-card/90 backdrop-blur-sm"></div>
-                        <h3 className="relative z-10 flex items-center justify-center h-full text-2xl text-muted-foreground">
-                          <b>Email</b> Game
-                        </h3>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
