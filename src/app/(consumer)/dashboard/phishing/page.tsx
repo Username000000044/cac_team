@@ -10,14 +10,47 @@ import Link from "next/link";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { CornerDownLeft, CornerUpLeft, Mail } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+
+emailjs.init({
+  publicKey: "2Pl2CLeyYTrABRpOR",
+  // Do not allow headless browsers
+  blockHeadless: true,
+  limitRate: {
+    // Set the limit rate for the application
+    id: "app",
+    // Allow 1 request per 10s
+    throttle: 10000,
+  },
+});
 
 export default function PhishingPage() {
   const numberOfScamsFellFor = 25;
   const scamsPopCalc = (8_200_000_000 / 100_000_000) * numberOfScamsFellFor; // 1/100,000,000th of earth population * numberOfScamsFellFor
 
   function sendDemoEmail() {
-    return null;
+    emailjs
+      .send("service_ovo33b4", "template_ahh5upv", {
+        title: "Your powerpoint presentation",
+        name: "Teamwork Presentation",
+        time: Date.now(),
+        message:
+          "I've completed the powerpoint presentation from the recent HR meeting. Please visit: http://microtech/powerpoint/presentation/1",
+        email: "johnben@gmail.com",
+      })
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          toast.warning("Email has been sent!");
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          toast.warning("Email cannot been sent!");
+        }
+      );
   }
   return (
     <ResizablePanelGroup
@@ -25,23 +58,36 @@ export default function PhishingPage() {
       className="min-h-[200px] rounded-lg md:min-w-[450px]"
     >
       <ResizablePanel defaultSize={60} minSize={40}>
+        <Toaster position="top-right" richColors />
         {/* nav */}
         <div className="flex items-center justify-between w-full p-5">
-          <Link href="/">
-            <Image
-              src="/img/logo.svg"
-              alt="logo"
-              width={100}
-              height={100}
-              className="w-12 h-12 opacity-50"
-            ></Image>
-          </Link>
-          <Button variant="secondary" onClick={() => sendDemoEmail}>
+          <div className="flex items-center text-muted-foreground">
+            <Link href="/">
+              <Image
+                src="/img/logo.svg"
+                alt="logo"
+                width={100}
+                height={100}
+                className="w-12 h-12 opacity-50"
+              ></Image>
+            </Link>
+            <Link href="/dashboard">
+              <CornerDownLeft size={20} className="ml-4 text-foreground" />
+            </Link>
+          </div>
+          <Button variant="secondary" onClick={() => sendDemoEmail()}>
             <Mail />
             Try Email
           </Button>
         </div>
         {/* data */}
+        <div className="flex w-full p-4">
+          {/* <div className="flex justify-center items-center w-full h-40 bg-card bg-card border border-border ">
+            <h1 className="text-4xl font-mono">
+              You are most suseptible to <u>Email spoofing</u>
+            </h1>
+          </div> */}
+        </div>
         <div className="flex justify-between h-40 p-4 gap-3">
           <div className="bg-card w-1/3 ">
             <div className="flex flex-col h-full justify-center items-center border border-border">

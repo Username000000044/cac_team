@@ -22,7 +22,7 @@ export const GlobePhishing = () => {
           lat: +lat,
           lng: +lng,
           atk: +atk,
-        }))
+        })),
       )
       .then(setAtkData);
   }, []);

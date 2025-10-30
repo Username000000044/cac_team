@@ -38,45 +38,45 @@ import {
 
 export type User = {
   id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
+  contents: string;
+  status: "pending" | "success" | "failed";
   email: string;
 };
 
 const data: User[] = [
   {
     id: "m5gr84i9",
-    amount: 316,
+    contents: "Please accept this gift from HR and...",
     status: "success",
-    email: "ken99@example.com",
+    email: "000000044@student.baisd.net",
   },
   {
     id: "3u1reuv4",
-    amount: 242,
+    contents: "Nice to see you, are you avaible next...",
     status: "success",
-    email: "Abe45@example.com",
+    email: "000000044@student.baisd.net",
   },
   {
     id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@example.com",
+    contents: "Are you still going to the meeting...",
+    status: "failed",
+    email: "000000044@student.baisd.net",
   },
   {
     id: "5kma53ae",
-    amount: 874,
+    contents: "Can I come over to your house aft...",
     status: "success",
-    email: "Silas22@example.com",
+    email: "000000044@student.baisd.net",
   },
   {
     id: "bhqecj4p",
-    amount: 721,
+    contents: "Heres the powerpoint file for the presenation...",
     status: "failed",
-    email: "carmella@example.com",
+    email: "000000044@student.baisd.net",
   },
 ];
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -85,8 +85,8 @@ export const columns: ColumnDef<Payment>[] = [
           table.getIsAllPageRowsSelected()
             ? true
             : table.getIsSomePageRowsSelected()
-            ? "indeterminate"
-            : false
+              ? "indeterminate"
+              : false
         }
         onCheckedChange={(value: any) =>
           table.toggleAllPageRowsSelected(!!value)
@@ -127,17 +127,11 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "contents",
+    header: () => <div className="text-right">Contents</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount") as string);
-
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      const contents = row.getValue("contents") as string;
+      return <div className="text-right font-medium">{contents}</div>;
     },
   },
   {
@@ -174,7 +168,7 @@ export const columns: ColumnDef<Payment>[] = [
 export default function TablePhishing() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -245,7 +239,7 @@ export default function TablePhishing() {
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -264,7 +258,7 @@ export default function TablePhishing() {
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
