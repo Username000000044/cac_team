@@ -36,14 +36,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export type Payment = {
+export type User = {
   id: string;
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   email: string;
 };
 
-const data: Payment[] = [
+const data: User[] = [
   {
     id: "m5gr84i9",
     amount: 316,

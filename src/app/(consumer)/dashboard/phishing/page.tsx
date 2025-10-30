@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/resizable";
 import Link from "next/link";
 import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
 export default function PhishingPage() {
   const numberOfScamsFellFor = 25;
@@ -28,7 +29,7 @@ export default function PhishingPage() {
               className="w-10 h-10 opacity-50"
             ></Image>
           </Link>
-          <h1 className="ml-5 text-lg">Phishing Simualtor</h1>
+          <h1 className="ml-5 text-sm">Phishing Report</h1>
         </div>
         {/* data */}
         <div className="flex justify-between h-40 p-4 gap-3 ">
@@ -46,7 +47,11 @@ export default function PhishingPage() {
           </div>
           <div className="bg-card w-1/3">
             <div className="flex flex-col h-full justify-center items-center border border-border">
-              <p className="text-4xl">Difficuly : Hard</p>
+              <p className="inline-flex items-center text-4xl">
+                Difficuly{" "}
+                <Separator orientation="vertical" className="mx-4 !h-7" />
+                Hard
+              </p>
               <p className="text-sm">difficulty set to Hard for 20 days</p>
             </div>
           </div>
@@ -77,7 +82,7 @@ export default function PhishingPage() {
             }).map((_, i) => (
               <div
                 key={i}
-                className={`bg-foreground rounded-full w-[1px] h-[1px]`}
+                className={`bg-primary rounded-full w-[1px] h-[1px]`}
               ></div>
             ))}
           </div>
