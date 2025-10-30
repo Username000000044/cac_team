@@ -1,3 +1,5 @@
+"use client";
+
 import TablePhishing from "@/components/table-phishing";
 import {
   ResizableHandle,
@@ -7,11 +9,16 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
 
 export default function PhishingPage() {
   const numberOfScamsFellFor = 25;
   const scamsPopCalc = (8_200_000_000 / 100_000_000) * numberOfScamsFellFor; // 1/100,000,000th of earth population * numberOfScamsFellFor
 
+  function sendDemoEmail() {
+    return null;
+  }
   return (
     <ResizablePanelGroup
       direction="horizontal"
@@ -26,14 +33,17 @@ export default function PhishingPage() {
               alt="logo"
               width={100}
               height={100}
-              className="w-10 h-10 opacity-50"
+              className="w-12 h-12 opacity-50"
             ></Image>
           </Link>
-          <h1 className="ml-5 text-sm">Phishing Report</h1>
+          <Button variant="secondary" onClick={() => sendDemoEmail}>
+            <Mail />
+            Try Email
+          </Button>
         </div>
         {/* data */}
-        <div className="flex justify-between h-40 p-4 gap-3 ">
-          <div className="bg-card w-1/3">
+        <div className="flex justify-between h-40 p-4 gap-3">
+          <div className="bg-card w-1/3 ">
             <div className="flex flex-col h-full justify-center items-center border border-border">
               <p className="text-7xl">{numberOfScamsFellFor}</p>
               <p className="text-sm">scams fell for</p>
@@ -48,9 +58,7 @@ export default function PhishingPage() {
           <div className="bg-card w-1/3">
             <div className="flex flex-col h-full justify-center items-center border border-border">
               <p className="inline-flex items-center text-4xl">
-                Difficuly{" "}
-                <Separator orientation="vertical" className="mx-4 !h-7" />
-                Hard
+                Difficuly Hard
               </p>
               <p className="text-sm">difficulty set to Hard for 20 days</p>
             </div>
